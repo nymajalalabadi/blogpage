@@ -4,8 +4,15 @@
     text-align: center;
   }
   
-  .post a {
+  .link {
     color: var(--color-grey-100);
+    text-decoration: none;
+    display: block;
+  }
+
+  .link:hover,
+  .link:focus {
+    text-decoration: underline;
   }
   
   .image {
