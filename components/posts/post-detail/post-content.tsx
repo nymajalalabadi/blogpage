@@ -1,9 +1,14 @@
 import classes from "./post-content.module.css";
 import PostHeader from "./post-header";
 
-export default function PostContent( props ) {
-  const { title, image, content, slug } = props;
+interface PostContentProps {
+  title: string;
+  image: string;
+  content: string;
+  slug: string;
+}
 
+export default function PostContent({ title, image, content, slug }: PostContentProps) {
   const imagePath = `/images/posts/${slug}/${image}`;
 
   return (

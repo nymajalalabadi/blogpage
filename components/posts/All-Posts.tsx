@@ -1,12 +1,16 @@
 import classes from "./all-posts.module.css";
 import PostsGrid from "./posts-grid";
+import { Post } from "@/lib/posts-util";
 
-export default function AllPosts( props ) {
-  const { posts } = props;
+interface AllPostsProps {
+  posts: Post[];
+}
+
+export default function AllPosts({ posts }: AllPostsProps) {
   return (
     <section className={classes.posts}>
       <h1>All Posts</h1>
-      <PostsGrid posts={props.posts} />
+      <PostsGrid posts={posts} />
     </section>
   );
 }

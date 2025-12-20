@@ -1,9 +1,14 @@
 import Link from "next/link";
 import Image from "next/image";
 import classes from "./post-item.module.css";
+import { Post } from "@/lib/posts-util";
 
-export default function PostItem( props ) {
-  const { title, image, excerpt, date, slug } = props.post;
+interface PostItemProps {
+  post: Post;
+}
+
+export default function PostItem({ post }: PostItemProps) {
+  const { title, image, excerpt, date, slug } = post;
 
   const formattedDate = new Date(date).toLocaleDateString('en-US', {
     day: 'numeric',
