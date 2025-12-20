@@ -1,7 +1,9 @@
-export default function Post() {
+import PostContent from "@/components/posts/post-detail/post-content";
+
+export default function DetailedPostPage( props ) {
+  const { title, image, content, slug } = props;
+  
   return (
-    <div>
-      <h1>Post</h1>
-    </div>
+    <PostContent title={title} image={image} content={content} slug={slug} />
   );
 }
