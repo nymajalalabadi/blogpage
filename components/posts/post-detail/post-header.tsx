@@ -7,9 +7,10 @@ interface PostHeaderProps {
 }
 
 export default function PostHeader({ title, image }: PostHeaderProps) {
+  
   return (
     <header className={classes.header}>
-      <h1>
+      <h1 className={classes.title}>
         {title}
       </h1>
       <Image src={image} alt={title || "Post image"} width={200} height={150} />
