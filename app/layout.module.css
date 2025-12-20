@@ -1,0 +1,32 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main {
+  flex: 1;
+  width: 100%;
+  max-width: 100rem;
+  margin: 0 auto;
+}
+
+.wrapper {
+  background: linear-gradient(
+    135deg,
+    var(--color-grey-50) 0%,
+    var(--color-grey-100) 100%
+  );
+  min-height: 100vh;
+}
+
+@media (prefers-color-scheme: dark) {
+  .wrapper {
+    background: linear-gradient(
+      135deg,
+      var(--color-grey-900) 0%,
+      var(--color-grey-800) 100%
+    );
+  }
+}
+

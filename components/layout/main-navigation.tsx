@@ -6,17 +6,15 @@ export default function MainNavigation() {
   return (
     <header className={classes.header}>
       <Link href="/">
-        <a>
-          <Logo />
-        </a>
+        <Logo />
       </Link>
-      <nav > 
-        <ul >
+      <nav>
+        <ul>
           <li>
-            <Link href="/posts" >Posts</Link>
+            <Link href="/posts">Posts</Link>
           </li>
           <li>
-            <Link href="/contact" >Contact</Link>
+            <Link href="/contact">Contact</Link>
           </li>
         </ul>
       </nav>

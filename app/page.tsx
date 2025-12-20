@@ -1,6 +1,6 @@
-import { Fragment } from "react";
 import Hero from "../components/home-page/hero";
 import FeaturedPosts from "../components/home-page/featured-posts";
+import classes from "./page.module.css";
 
 const DUMMY_POSTS = [
   {
@@ -35,9 +35,15 @@ const DUMMY_POSTS = [
 
 export default function Home() {
   return (
-    <Fragment>
-      <Hero />
-      <FeaturedPosts posts={DUMMY_POSTS} />
-    </Fragment>
+    <div className={classes.container}>
+      <section className={classes.heroSection}>
+        <Hero />
+      </section>
+      <div className={classes.content}>
+        <section className={classes.postsSection}>
+          <FeaturedPosts posts={DUMMY_POSTS} />
+        </section>
+      </div>
+    </div>
   );
 }
