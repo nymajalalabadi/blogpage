@@ -20,6 +20,8 @@ Next.js is a React framework that enables you to build production-ready web appl
 
 ## Getting Started
 
+![Next.js File Based Routing](/images/posts/getting-started-with-nextjs/nextjs-file-based-routing.png)
+
 To get started with Next.js, you'll need to have Node.js installed on your system. Then you can create a new Next.js project using:
 
 ```bash

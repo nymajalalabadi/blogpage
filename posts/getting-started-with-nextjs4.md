@@ -32,6 +32,8 @@ The Vue CLI provides a full system for rapid Vue.js development. It provides:
 
 ## Getting Started
 
+![Next.js File Based Routing](/images/posts/getting-started-with-nextjs4/nextjs-file-based-routing.png)
+
 To create a new Vue project, install the Vue CLI and create a project:
 
 ```bash

@@ -31,6 +31,8 @@ Angular's router enables navigation from one view to another as users perform ta
 
 ## Getting Started
 
+![Next.js File Based Routing](/images/posts/getting-started-with-nextjs3/nextjs-file-based-routing.png)
+
 To create a new Angular project, install the Angular CLI and run:
 
 ```bash

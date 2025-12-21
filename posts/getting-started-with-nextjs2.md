@@ -32,6 +32,8 @@ JSX is a syntax extension for JavaScript that lets you write HTML-like code in y
 
 ## Getting Started
 
+![Next.js File Based Routing](/images/posts/getting-started-with-nextjs2/nextjs-file-based-routing.png)
+
 To create a new React app, you can use Create React App:
 
 ```bash
