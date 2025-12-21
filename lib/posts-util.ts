@@ -1,3 +1,9 @@
+import fs from "fs";
+import path from "path";
+import matter from "gray-matter";
+
+const postsDirectory = path.join(process.cwd(), "posts");
+
 export interface Post {
   title: string;
   image: string;
@@ -7,50 +13,58 @@ export interface Post {
   content: string;
 }
 
-export const POSTS_DATA: Post[] = [
-  {
-    title: "Getting Started with Next.js",
-    image: "getting-started-nextjs.png",
-    excerpt: "Learn how to build a personal website using Next.js",
-    date: "2025-01-01",
-    slug: "getting-started-with-nextjs",
-    content: "Next.js is a powerful React framework that makes building web applications easier and more efficient. In this comprehensive guide, we'll explore the fundamentals of Next.js and learn how to create amazing web applications."
-  },
-  {
-    title: "Getting Started with React",
-    image: "getting-started-nextjs.png",
-    excerpt: "Learn how to build a personal website using React",
-    date: "2025-01-01",
-    slug: "getting-started-with-nextjs2",
-    content: "React is a JavaScript library for building user interfaces. In this post, we'll explore the fundamentals of React and how to get started with your first React application. Learn about components, state, and props."
-  },
-  {
-    title: "Getting Started with Angular",
-    image: "getting-started-nextjs.png",
-    excerpt: "Learn how to build a personal website using Angular",
-    date: "2025-01-01",
-    slug: "getting-started-with-nextjs3",
-    content: "Angular is a platform and framework for building single-page client applications using HTML and TypeScript. Let's dive into Angular and build something amazing! We'll cover components, services, and routing."
-  },
-  {
-    title: "Getting Started with Vue",
-    image: "getting-started-nextjs.png",
-    excerpt: "Learn how to build a personal website using Vue",
-    date: "2025-01-01",
-    slug: "getting-started-with-nextjs4",
-    content: "Vue.js is a progressive framework for building user interfaces. Unlike other monolithic frameworks, Vue is designed from the ground up to be incrementally adoptable. Learn the basics and start building today!"
-  },
-];
-
 export function getPostBySlug(slug: string): Post | undefined {
-  return POSTS_DATA.find(post => post.slug === slug);
+  try {
+    const fullPath = path.join(postsDirectory, `${slug}.md`);
+    const fileContents = fs.readFileSync(fullPath, "utf8");
+   const slugPost = slug.replace(/\.md$/, "");
+
+    const { data, content } = matter(fileContents);
+
+    return {
+      title: data.title,
+      image: data.image,
+      excerpt: data.excerpt,
+      date: data.date,
+      slug: slugPost,
+      content: content,
+    };
+  } catch (error) {
+    console.error(`Error reading post ${slug}:`, error);
+    return undefined;
+  }
 }
 
 export function getAllPosts(): Post[] {
-  return POSTS_DATA;
+  try {
+    const fileNames = fs.readdirSync(postsDirectory);
+    const allPostsData = fileNames.filter((fileName) => fileName.endsWith(".md"))
+      .map((fileName) => {
+        const slug = fileName.replace(/\.md$/, "");
+        const fullPath = path.join(postsDirectory, fileName);
+        const fileContents = fs.readFileSync(fullPath, "utf8");
+        const { data, content } = matter(fileContents);
+
+        return {
+          title: data.title,
+          image: data.image,
+          excerpt: data.excerpt,
+          date: data.date,
+          slug: slug,
+          content: content,
+        };
+      })
+      .sort((a, b) => (a.date > b.date ? -1 : 1));
+
+    return allPostsData;
+  } catch (error) {
+    console.error("Error reading posts directory:", error);
+    return [];
+  }
 }
 
 export function getFeaturedPosts(): Post[] {
-  return POSTS_DATA.slice(0, 4);
+  const allPosts = getAllPosts();
+  return allPosts.slice(0, 4);
 }
 
