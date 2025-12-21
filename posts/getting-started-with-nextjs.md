@@ -3,6 +3,7 @@ title: "Getting Started with Next.js"
 image: "getting-started-nextjs.png"
 excerpt: "Learn how to build a personal website using Next.js"
 date: "2025-01-01"
+featured: true
 ---
 
 Next.js is a powerful React framework that makes building web applications easier and more efficient. In this comprehensive guide, we'll explore the fundamentals of Next.js and learn how to create amazing web applications.

@@ -3,6 +3,7 @@ title: "Getting Started with React"
 image: "getting-started-nextjs.png"
 excerpt: "Learn how to build a personal website using React"
 date: "2025-01-01"
+featured: true
 ---
 
 React is a JavaScript library for building user interfaces. In this post, we'll explore the fundamentals of React and how to get started with your first React application. Learn about components, state, and props.

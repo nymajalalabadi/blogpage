@@ -3,6 +3,7 @@ title: "Getting Started with Vue"
 image: "getting-started-nextjs.png"
 excerpt: "Learn how to build a personal website using Vue"
 date: "2025-01-01"
+featured: false
 ---
 
 Vue.js is a progressive framework for building user interfaces. Unlike other monolithic frameworks, Vue is designed from the ground up to be incrementally adoptable. Learn the basics and start building today!

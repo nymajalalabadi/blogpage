@@ -3,6 +3,7 @@ title: "Getting Started with Angular"
 image: "getting-started-nextjs.png"
 excerpt: "Learn how to build a personal website using Angular"
 date: "2025-01-01"
+featured: false
 ---
 
 Angular is a platform and framework for building single-page client applications using HTML and TypeScript. Let's dive into Angular and build something amazing! We'll cover components, services, and routing.

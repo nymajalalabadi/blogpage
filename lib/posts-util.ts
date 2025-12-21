@@ -11,13 +11,13 @@ export interface Post {
   date: string;
   slug: string;
   content: string;
+  featured: boolean;
 }
 
 export function getPostBySlug(slug: string): Post | undefined {
   try {
     const fullPath = path.join(postsDirectory, `${slug}.md`);
     const fileContents = fs.readFileSync(fullPath, "utf8");
-   const slugPost = slug.replace(/\.md$/, "");
 
     const { data, content } = matter(fileContents);
 
@@ -26,8 +26,9 @@ export function getPostBySlug(slug: string): Post | undefined {
       image: data.image,
       excerpt: data.excerpt,
       date: data.date,
-      slug: slugPost,
+      slug: slug,
       content: content,
+      featured: data.featured || false,
     };
   } catch (error) {
     console.error(`Error reading post ${slug}:`, error);
@@ -52,6 +53,7 @@ export function getAllPosts(): Post[] {
           date: data.date,
           slug: slug,
           content: content,
+          featured: data.featured || false,
         };
       })
       .sort((a, b) => (a.date > b.date ? -1 : 1));
@@ -65,6 +67,7 @@ export function getAllPosts(): Post[] {
 
 export function getFeaturedPosts(): Post[] {
   const allPosts = getAllPosts();
-  return allPosts.slice(0, 4);
+  const featuredPosts = allPosts.filter((post) => post.featured);
+  return featuredPosts;
 }
 
