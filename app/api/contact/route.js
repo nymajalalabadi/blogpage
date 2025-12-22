@@ -1,12 +1,11 @@
 import { MongoClient } from 'mongodb';
 
-export default async function handler(req, res) {
-    if (req.method === 'POST') {
-        const { email, name, message } = req.body;
+export async function POST(request) {
+    try {
+        const { email, name, message } = await request.json();
 
         if (!email || !email.includes('@') || !name || name.trim() === '' || !message || message.trim() === '') {
-            res.status(422).json({ message: 'Invalid input.' });
-            return;
+            return Response.json({ message: 'Invalid input.' }, { status: 422 });
         }
 
         // Store it in a database or in a file
@@ -14,14 +13,14 @@ export default async function handler(req, res) {
             email,
             name,
             message
-        }
+        };
 
         let client;
 
         try {
             client = await MongoClient.connect('mongodb+srv://yukari:81818181@cluster0.lz9vx.mongodb.net/?retryWrites=true&w=majority&appName=cluster0');
         } catch (error) {
-            res.status(500).json({ message: 'Storing message failed.' });
+            return Response.json({ message: 'Storing message failed.' }, { status: 500 });
         }
 
         const db = client.db('blog');
@@ -31,14 +30,20 @@ export default async function handler(req, res) {
             newMessage.id = result.insertedId;
         } catch (error) {
             client.close();
-            res.status(500).json({ message: 'Storing message failed.' });
-            return;
-        } 
+            return Response.json({ message: 'Storing message failed.' }, { status: 500 });
+        }
 
         client.close();
 
-        res.status(200).json({ message: 'Message sent successfully', message: newMessage });
-    } else {
-        res.status(405).json({ message: 'Method not allowed' });
+        return Response.json({
+            message: 'Message sent successfully',
+            data: newMessage
+        });
+    } catch (error) {
+        return Response.json({ message: 'Internal server error' }, { status: 500 });
     }
+}
+
+export async function GET() {
+    return Response.json({ message: 'Method not allowed' }, { status: 405 });
 }
