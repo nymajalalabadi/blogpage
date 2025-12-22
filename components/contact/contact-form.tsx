@@ -1,3 +1,5 @@
+"use client";
+
 import classes from "./contact-form.module.css";
 import { useRef, useState, useEffect } from "react";
 import Notification from "../ui/notification";
