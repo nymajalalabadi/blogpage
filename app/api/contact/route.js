@@ -17,8 +17,10 @@ export async function POST(request) {
 
         let client;
 
+        const connectionString = `mongodb+srv://${process.env.mongodb_username}:${process.env.mongodb_password}@${process.env.mongodb_clustername}.mongodb.net/?retryWrites=true&w=majority&appName=${process.env.mongodb_clustername}`;
+
         try {
-            client = await MongoClient.connect('mongodb+srv://yukari:81818181@cluster0.lz9vx.mongodb.net/?retryWrites=true&w=majority&appName=cluster0');
+            client = await MongoClient.connect(connectionString);
         } catch (error) {
             return Response.json({ message: 'Storing message failed.' }, { status: 500 });
         }
